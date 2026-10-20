@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morocco in Data</title>
+<meta name="description" content="Data projects about Morocco: the 2022 World Cup run and the country's drought, analysed with open data and tested.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Same design system as both projects */
+:root {
+  --background: #08080a; --foreground: #f3f1ea; --surface: #111114; --muted: #807f78;
+  --line: rgba(243, 241, 234, 0.1); --line-strong: rgba(243, 241, 234, 0.22);
+  --red: #e4343b;      /* Lions in the Data */
+  --ochre: #d08c3e;    /* Is Morocco Running Out of Rain? */
+  --font-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --font-sans: "Onest", system-ui, sans-serif;
+  --gutter: 2.5rem;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { font-size: 16px; background: var(--background); }
+@media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+@media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+@media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+@media (max-width: 640px) { html { font-size: 4.444444vw; } :root { --gutter: 16px; } }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--foreground); outline-offset: 4px; border-radius: 4px; }
+body {
+  background: var(--background); color: var(--foreground);
+  font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+::selection { background: var(--foreground); color: var(--background); }
+main { max-width: 90rem; margin: 0 auto; padding: 0 var(--gutter); }
+
+.display { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: -0.01em; }
+.label { font-size: 0.8125rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); }
+
+/* Hero */
+.hero { padding: 6rem 0 4rem; display: grid; gap: 2rem; }
+.hero h1 { font-size: 4rem; line-height: 0.88; }
+.hero > *, .chapters > * { min-width: 0; }
+.hero h1 span { display: block; }
+.hero p { max-width: 40ch; font-size: 1.375rem; line-height: 1.45; color: var(--muted); }
+@media (min-width: 640px) { .hero { padding: 9rem 0 6rem; } .hero h1 { font-size: 10rem; } }
+
+/* Chapters */
+.chapters { display: grid; gap: var(--gutter); padding-bottom: 6rem; }
+@media (min-width: 900px) { .chapters { grid-template-columns: 1fr 1fr; } }
+.chapter {
+  position: relative; display: flex; flex-direction: column; gap: 1.25rem;
+  padding: 2rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--surface);
+  overflow: hidden; transition: border-color 300ms, transform 400ms var(--ease-expo);
+}
+.chapter:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.chapter .num { font-family: var(--font-display); font-size: 1.25rem; color: var(--c); }
+.chapter h2 { font-size: 2.75rem; line-height: 0.95; max-width: 14ch; overflow-wrap: break-word; }
+.chapter .stat { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.chapter .stat b { font-family: var(--font-display); font-weight: 400; font-size: 4.5rem; line-height: 1; color: var(--c); }
+.chapter .stat span { max-width: 22ch; color: var(--muted); line-height: 1.4; }
+.chapter p { color: var(--muted); max-width: 46ch; }
+.chapter .links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.5rem; }
+.chapter .links .go { font-weight: 600; transition: color 300ms; }
+.chapter .links .go span { color: var(--c); }
+.chapter:hover .links .go { color: var(--c); }
+.chapter .links .sub { font-weight: 500; color: var(--muted); }
+.chapter .art { position: absolute; right: -1rem; top: -1rem; width: 11rem; opacity: 0.5; pointer-events: none; }
+@media (max-width: 639px) { .chapter .art { width: 8rem; opacity: 0.35; } }
+
+/* Approach */
+.approach { border-top: 1px solid var(--line); padding: 5rem 0; display: grid; gap: 2rem; }
+.approach ol { list-style: none; display: grid; gap: 1.5rem; counter-reset: step; }
+.approach li { counter-increment: step; display: grid; grid-template-columns: 3rem 1fr; gap: 0.5rem; }
+.approach li::before { content: "0" counter(step); font-family: var(--font-display); font-size: 1.5rem; color: var(--muted); line-height: 1.2; }
+.approach li b { display: block; font-size: 1.25rem; font-weight: 600; }
+.approach li span { color: var(--muted); }
+@media (min-width: 900px) {
+  .approach { grid-template-columns: 1fr 2fr; }
+  .approach ol { grid-template-columns: repeat(2, 1fr); gap: 2rem var(--gutter); }
+}
+
+footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+/* Entrance: everything rises in once on load */
+.in { opacity: 0; transform: translateY(24px); animation: rise 800ms var(--ease-expo) forwards; animation-delay: var(--d, 0ms); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .in { animation: none; opacity: 1; transform: none; } .chapter { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <p class="label in">A series of data projects</p>
+    <h1 class="display in" style="--d:100ms"><span>Morocco</span><span>in Data</span></h1>
+    <p class="in" style="--d:250ms">Questions about my country, answered with open data, Python and interactive charts, and every claim tested before it's published.</p>
+  </header>
+
+  <section class="chapters" aria-label="Projects">
+    <a class="chapter in" style="--c: var(--red); --d:350ms" href="https://ryeggouti.github.io/morocco-world-cup-2022/">
+      <svg class="art" viewBox="0 0 40 40" aria-hidden="true">
+        <g fill="currentColor" style="color: var(--muted)">
+          <circle cx="8" cy="12" r="1.2"/><circle cx="14" cy="9" r="1.6"/><circle cx="20" cy="14" r="1"/><circle cx="26" cy="10" r="1.4"/>
+          <circle cx="11" cy="20" r="1"/><circle cx="18" cy="22" r="2"/><circle cx="30" cy="18" r="1.1"/><circle cx="24" cy="26" r="1.3"/>
+          <circle cx="9" cy="29" r="0.9"/><circle cx="33" cy="27" r="1"/><circle cx="16" cy="32" r="1.2"/>
+        </g>
+        <circle cx="21" cy="6" r="2.2" fill="var(--red)"/><circle cx="29" cy="31" r="1.6" fill="var(--red)"/>
+      </svg>
+      <span class="num">Chapter 01</span>
+      <h2 class="display">Lions in the Data</h2>
+      <p>How Morocco reached the 2022 World Cup semi-final: shot quality, finishing and defending, tested against all 32 teams.</p>
+      <div class="stat"><b>2.3×</b><span>better chances per shot than Spain in the round of 16</span></div>
+      <div class="links"><span class="go">Explore the site <span>↗</span></span><span class="sub">Football · xG · 64 matches</span></div>
+    </a>
+
+    <a class="chapter in" style="--c: var(--ochre); --d:450ms" href="https://ryeggouti.github.io/morocco-drought/">
+      <svg class="art" viewBox="0 0 40 40" aria-hidden="true">
+        <g fill="var(--ochre)">
+          <circle cx="26" cy="5" r="1.4"/><circle cx="30" cy="5" r="1.4"/><circle cx="22" cy="9" r="1.4"/><circle cx="26" cy="9" r="1.4"/>
+          <circle cx="30" cy="9" r="1.4"/><circle cx="34" cy="9" r="1.4"/><circle cx="18" cy="13" r="1.2"/><circle cx="22" cy="13" r="1.2"/>
+          <circle cx="26" cy="13" r="1.2"/><circle cx="30" cy="13" r="1.2"/><circle cx="18" cy="17" r="1"/><circle cx="22" cy="17" r="1"/>
+        </g>
+        <g fill="currentColor" style="color: var(--muted)">
+          <circle cx="14" cy="21" r="0.7"/><circle cx="18" cy="21" r="0.7"/><circle cx="12" cy="25" r="0.7"/><circle cx="16" cy="25" r="0.7"/>
+          <circle cx="10" cy="29" r="0.7"/><circle cx="14" cy="29" r="0.7"/><circle cx="8" cy="33" r="0.7"/><circle cx="12" cy="33" r="0.7"/><circle cx="6" cy="37" r="0.7"/>
+        </g>
+      </svg>
+      <span class="num">Chapter 02</span>
+      <h2 class="display">Is Morocco Running Out of Rain?</h2>
+      <p>34 rainy seasons across a 62-point grid covering all of Morocco. The rain hasn't clearly fallen, but the heat has risen.</p>
+      <div class="stat"><b>+31 mm</b><span>more evaporation demand per decade (p = 0.001)</span></div>
+      <div class="links"><span class="go">Explore the site <span>↗</span></span><span class="sub">Climate · rainfall · harvests</span></div>
+    </a>
+  </section>
+
+  <section class="approach">
+    <div>
+      <p class="label">How I work</p>
+    </div>
+    <ol>
+      <li><span><b>Ask a real question</b>About Morocco, with open data that anyone can check.</span></li>
+      <li><span><b>Test it fairly</b>Compare against fair baselines, and report p-values, even when they say "could be chance".</span></li>
+      <li><span><b>Correct the story</b>When the full data disagrees with a first result, the first result goes.</span></li>
+      <li><span><b>Show the method</b>Every number comes from code that's public on GitHub.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <span class="label">© <span id="year">2026</span> ryeggouti</span>
+    <a class="label" href="https://github.com/ryeggouti" target="_blank" rel="noreferrer noopener">GitHub ↗</a>
+  </footer>
+</main>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
