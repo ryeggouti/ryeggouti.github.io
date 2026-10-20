@@ -6,8 +6,7 @@ A series of data projects about Morocco: questions answered with open data, Pyth
 
 ## Projects
 
-### 01 · [How Did Morocco Reach the Semi-Final?]
-(https://ryeggouti.github.io/morocco-world-cup-2022/)
+### 01 · [How Did Morocco Reach the Semi-Final?](https://ryeggouti.github.io/morocco-world-cup-2022/)
 How Morocco reached the 2022 World Cup semi-final. Shot quality (xG), finishing and defending, tested against all 32 teams using StatsBomb's free event data for all 64 matches.
 - Morocco's chances against Spain were worth 2.3× as much per shot as Spain's.
 - Morocco's defence got better as opponents got stronger: shots against them dropped from 0.13 xG each in the group stage (28th of 32) to 0.08 in the knockouts.
