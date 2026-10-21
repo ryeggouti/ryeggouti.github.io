@@ -15,7 +15,7 @@ How Morocco reached the 2022 World Cup semi-final. Shot quality (xG), finishing 
 ### 02 · [Is Morocco Running Out of Rain?](https://ryeggouti.github.io/morocco-drought/)
 34 rainy seasons (1991/92–2024/25) on a 62-point grid covering all of Morocco.
 - Rainfall shows no clear trend (p = 0.96), but evaporation demand rose about 31 mm per decade (p = 0.001): the same rain goes less far.
-- Rain explains roughly 37% of the swings in Morocco's cereal harvests (r = 0.61).
+- Rain explains roughly 38% of the swings in Morocco's cereal harvests (r = 0.61).
 - [Code and analysis](https://github.com/ryeggouti/morocco-drought)
 
 ### Experiment 01 · [Stork Flight](https://ryeggouti.github.io/stork-flight/)
