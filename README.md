@@ -18,6 +18,12 @@ How Morocco reached the 2022 World Cup semi-final. Shot quality (xG), finishing 
 - Rain explains roughly 37% of the swings in Morocco's cereal harvests (r = 0.61).
 - [Code and analysis](https://github.com/ryeggouti/morocco-drought)
 
+### Experiment 01 · [Stork Flight](https://ryeggouti.github.io/stork-flight/)
+A reinforcement learning experiment. I built my own game environment (a white stork flying between minarets and storm clouds), trained an AI to play it from rewards alone, and put its real training snapshots into a browser game you can race.
+- With more practice, the AI passed my one-line rule on Hard: 47.9 minarets on average vs 26.9.
+- The same training code gave 19.9 in one run and 37.4 in another, a reminder that one run can be luck.
+- [Code, notebook and results](https://github.com/ryeggouti/stork-flight) · Part 1: [Lunar Lander](https://github.com/ryeggouti/lunar-lander-rl)
+
 ## How I work
 1. **Ask a real question** about Morocco, using open data anyone can check.
 2. **Test it fairly** against fair baselines, and report p-values, even when they say "could be chance".
@@ -25,6 +31,6 @@ How Morocco reached the 2022 World Cup semi-final. Shot quality (xG), finishing 
 4. **Show the method:** every number comes from code that's public on GitHub.
 
 ## Built with
-Python (pandas, SciPy, GeoPandas, mplsoccer) in Google Colab · HTML, CSS, JavaScript and Chart.js · GitHub Pages
+Python (pandas, SciPy, GeoPandas, mplsoccer, Gymnasium, Stable-Baselines3) in Google Colab · HTML, CSS, JavaScript and Chart.js · GitHub Pages
 
 I used AI tools to help write some of the code. I chose the questions, checked the results and wrote the findings.
